@@ -1,179 +1,48 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+extends base
 
-  
-  <title>About Feather-Sea | 羽海&#39;Blog</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我是LGW，平常以LGW2016B02或Feather-Sea（新ID）在各个OJ游荡。一名拉拉人，本命园田海未。12事实上，Feather-Sea这个ID的意思是“羽海”海未的罗马音是“umi”，音译过来就是“羽海”了。 肉体上不断追求更强，精神上不断深刻思考只会线段树哈哈哈。123456~~天灭穗乃果 A-Rise保平安~~ ~~人在做 天在看 μ&amp;apos;s大法有隐患~~ ~~UR一出天地">
-<meta property="og:type" content="article">
-<meta property="og:title" content="About Feather-Sea">
-<meta property="og:url" content="http://yoursite.com/2018/01/13/About-Feather-Sea/index.html">
-<meta property="og:site_name" content="羽海&#39;Blog">
-<meta property="og:description" content="我是LGW，平常以LGW2016B02或Feather-Sea（新ID）在各个OJ游荡。一名拉拉人，本命园田海未。12事实上，Feather-Sea这个ID的意思是“羽海”海未的罗马音是“umi”，音译过来就是“羽海”了。 肉体上不断追求更强，精神上不断深刻思考只会线段树哈哈哈。123456~~天灭穗乃果 A-Rise保平安~~ ~~人在做 天在看 μ&amp;apos;s大法有隐患~~ ~~UR一出天地">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2018-01-13T10:59:37.332Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About Feather-Sea">
-<meta name="twitter:description" content="我是LGW，平常以LGW2016B02或Feather-Sea（新ID）在各个OJ游荡。一名拉拉人，本命园田海未。12事实上，Feather-Sea这个ID的意思是“羽海”海未的罗马音是“umi”，音译过来就是“羽海”了。 肉体上不断追求更强，精神上不断深刻思考只会线段树哈哈哈。123456~~天灭穗乃果 A-Rise保平安~~ ~~人在做 天在看 μ&amp;apos;s大法有隐患~~ ~~UR一出天地">
-  
-    <link rel="alternate" href="/atom.xml" title="羽海&#39;Blog" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
-</head>
+block title
+  title= page.title + ' | ' + config.title
 
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">羽海&#39;Blog</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main"><article id="post-About-Feather-Sea" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/01/13/About-Feather-Sea/" class="article-date">
-  <time datetime="2018-01-13T10:45:50.000Z" itemprop="datePublished">2018-01-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      About Feather-Sea
-    </h1>
-  
+block content
+  .post
+    h1.post-title= page.title
+    .post-meta= page.date.format('ll')
+      if page.categories.length > 0
+        span= ' | '
+        span.category
+          for category in page.categories.toArray()
+            a(href=url_for(category.path))= category.name
+      if theme.busuanzi == true
+        script(src='https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js', async)
+        span#busuanzi_container_page_pv= ' | '
+          span#busuanzi_value_page_pv
+          span= ' ' + __('Hits')
+    if theme.disqus
+      a.disqus-comment-count(data-disqus-identifier=page.path, href=url_for(page.path) + '#disqus_thread')
+    if theme.changyan
+      a.ds-thread-count(href=url_for(page.path) + '#SOHUCS')
+        span#changyan_count_unit(style='font-size: 15px; color: #6E7173;') 0
+        span= ' ' + __('Comment')
+      script(src='https://assets.changyan.sohu.com/upload/plugins/plugins.count.js', async)
+    if theme.valine.enable
+      a.disqus-comment-count( href=url_for(page.path) + '#vcomment')
+        span.valine-comment-count(data-xid=url_for(page.path))
+        span 条评论
+    if page.toc
+      div(class='clear')
+        div(id='toc' class='toc-article')
+          div(class='toc-title')= __('contents')
+          != toc(page.content, {list_number: theme.toc_number})
+    .post-content
+      != page.content
+    if theme.donate.enable == true
+      iframe(src='/donate/?AliPayQR=' + theme.donate.alipay_qr + '&WeChatQR=' + theme.donate.wechat_qr + '&GitHub=' + theme.donate.github + '&BTCQR=' + theme.donate.btc_qr + '&BTCKEY='+ theme.donate.btc_key + '&PayPal=' + theme.donate.paypal_url, style='overflow-x:hidden; overflow-y:hidden; border:0xp none #fff; min-height:240px; width:100%;', frameborder='0', scrolling='no')
+    if theme.shareto == true
+      script(type='text/javascript', src=url_for(theme.js) + '/share.js' + '?v=' + theme.version, async)
+      a.article-share-link(data-url=page.permalink, data-id=page._id, data-qrcode=qrcode(page.permalink))= __('shareto')
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我是LGW，平常以<code>LGW2016B02</code>或<code>Feather-Sea</code>（新ID）在各个OJ游荡。<br>一名拉拉人，本命园田海未。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">事实上，Feather-Sea这个ID的意思是“羽海”</span><br><span class="line">海未的罗马音是“umi”，音译过来就是“羽海”了。</span><br></pre></td></tr></table></figure></p>
-<p><del>肉体上不断追求更强，精神上不断深刻思考</del><br>只会线段树哈哈哈。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">~~天灭穗乃果 A-Rise保平安~~ </span><br><span class="line">~~人在做 天在看 μ&apos;s大法有隐患~~ </span><br><span class="line">~~UR一出天地灭 扔掉手游保平安~~ </span><br><span class="line">~~诚心诚念rise好 UTX学园平安保~~</span><br><span class="line">~~众生皆为二癞子来 niconico忘前缘~~ </span><br><span class="line">~~音乃学生说真相 教你转学莫拒绝~~</span><br></pre></td></tr></table></figure></p>
-<p>欢迎各路Dalao互加友链。</p>
-<p>#一名热爱编程的普通人。</p>
+    include _partial/tag.pug
+    include _partial/post_nav.pug
 
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2018/01/13/About-Feather-Sea/" data-id="cjcd8ph850000qwqsqtbsrlrs" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-    
-  
-</article>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">一月 2018</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2018/01/13/About-Feather-Sea/">About Feather-Sea</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2018 ちゃん<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-<script src="/js/script.js"></script>
-
-
-
-  </div>
-</body>
-</html>
+    if page.comments
+      include _partial/comments.pug
